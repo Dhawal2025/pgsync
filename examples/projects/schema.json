@@ -1,0 +1,58 @@
+[
+    {
+        "database": "projectsdb",
+        "index": "projectsi",
+        "nodes": {
+            "table": "projects",
+            "schema": "public",
+            "columns": ["name", "slug", "description"],
+            "transform": {
+                "mapping": {
+                    "name": {
+                        "type": "keyword"
+                    },
+                    "slug": {
+                        "type": "text"
+                    },
+                    "description": {
+                        "type": "text"
+                    }
+                }
+            },
+            "children": [
+                {
+                    "table": "users",
+                    "columns": ["name"],
+                    "transform": {
+                        "mapping": {
+                            "name": {
+                                "type": "keyword"
+                            }
+                        }
+                    },
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_one",
+                        "through_tables": ["users_projects"]
+                    }
+                },
+                {
+                    "table": "hashtags",
+                    "columns": ["name"],
+                    "transform": {
+                        "mapping": {
+                            "name": {
+                                "type": "keyword"
+                            }
+                        }
+                    },
+                    "relationship": {
+                        "variant": "object",
+                        "type": "one_to_many",
+                        "through_tables": ["projects_hashtags"]
+                    }
+                }
+            ]
+        }
+    }
+]

@@ -293,6 +293,7 @@ class Sync(Base, metaclass=Singleton):
                 self.create_triggers(
                     schema, tables=tables, join_queries=join_queries
                 )
+        print("replication slot", self.__name)
         self.create_replication_slot(self.__name)
 
     def teardown(self, drop_view: bool = True) -> None:
@@ -1421,6 +1422,7 @@ def main(
 
         else:
             for document in config_loader(config):
+                print("document here-> ", document)
                 sync: Sync = Sync(document, verbose=verbose, **kwargs)
                 sync.pull()
                 if daemon:

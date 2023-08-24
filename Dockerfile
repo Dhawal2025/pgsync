@@ -1,9 +1,10 @@
-FROM python:3.7
+FROM python:3.8
 ARG WORKDIR=/code
 RUN mkdir $WORKDIR
 ADD ./examples/ $WORKDIR/examples
 WORKDIR $WORKDIR
-RUN pip install git+https://github.com/toluaina/pgsync.git
+COPY . ./
+RUN pip install .
 COPY ./docker/wait-for-it.sh wait-for-it.sh
 COPY ./docker/runserver.sh runserver.sh
 RUN chmod +x wait-for-it.sh

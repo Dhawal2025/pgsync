@@ -112,7 +112,7 @@ ELASTICSEARCH_STREAMING_BULK = env.bool(
 # the size of the threadpool to use for the bulk requests
 ELASTICSEARCH_THREAD_COUNT = env.int("ELASTICSEARCH_THREAD_COUNT", default=4)
 # increase this if you are getting read request timeouts
-ELASTICSEARCH_TIMEOUT = env.float("ELASTICSEARCH_TIMEOUT", default=10)
+ELASTICSEARCH_TIMEOUT = env.float("ELASTICSEARCH_TIMEOUT", default=500)
 ELASTICSEARCH_USER = env.str("ELASTICSEARCH_USER", default=None)
 # turn on SSL
 ELASTICSEARCH_USE_SSL = env.bool("ELASTICSEARCH_USE_SSL", default=False)
@@ -130,7 +130,6 @@ ELASTICSEARCH_IGNORE_STATUS = tuple(map(int, ELASTICSEARCH_IGNORE_STATUS))
 ELASTICSEARCH = env.bool("ELASTICSEARCH", default=True)
 OPENSEARCH = env.bool("OPENSEARCH", default=(not ELASTICSEARCH))
 OPENSEARCH_AWS_HOSTED = env.bool("OPENSEARCH_AWS_HOSTED", default=False)
-OPENSEARCH_AWS_SERVERLESS = env.bool("OPENSEARCH_AWS_SERVERLESS", default=False) # noqa E501
 
 # Postgres:
 PG_HOST = env.str("PG_HOST", default="localhost")
